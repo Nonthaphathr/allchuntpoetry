@@ -22,14 +22,8 @@
         }
         
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes fadeIn {
@@ -41,28 +35,20 @@
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
         }
+
+        @keyframes textShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        @keyframes rotate3d {
-            0% { transform: perspective(1000px) rotateY(0deg); }
-            100% { transform: perspective(1000px) rotateY(360deg); }
+            50% { transform: translateY(-5px); }
         }
         
         .animate-fade-in-up {
             animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out forwards;
         }
         
         .tool-card {
@@ -71,55 +57,34 @@
         }
         
         .tool-card:hover {
-            transform: scale(1.08) translateY(-8px) rotateZ(2deg);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05) translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
         .tool-card:hover .tool-image {
-            filter: brightness(1.15) saturate(1.2);
-            transform: scale(1.1) rotate(3deg);
+            filter: brightness(1.1);
+            transform: scale(1.05);
         }
         
         .tool-image {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s ease;
         }
-        
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 200, 0, 0.1), rgba(255, 100, 150, 0.1));
-            border-radius: 1rem;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+
+        /* Quote Animation Style */
+        .quote-badge {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.1);
+            animation: float 3s ease-in-out infinite;
         }
-        
-        .tool-card:hover::before {
-            opacity: 1;
-        }
-        
-        .tool-card:active {
-            transform: scale(1.02) translateY(-2px);
-        }
-        
-        .shine-effect {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .shine-effect::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            background-size: 200% 100%;
-            animation: shine 3s infinite;
+
+        .quote-text {
+            background: linear-gradient(45deg, #ff6b6b, #ffb86c, #ff6b6b);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 3s linear infinite;
         }
         
         .visitor-badge {
@@ -151,43 +116,78 @@
     <p class="text-gray-600 text-lg">กำลังโหลด...</p>
    </div>
   </div>
+  
   <div id="main-content" class="min-h-full bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50 py-8 px-4" style="opacity: 0;">
    <div class="max-w-6xl mx-auto">
-    <header class="text-center mb-12 animate-fade-in-up" style="animation-delay: 0.1s; opacity: 0;">
-     <div class="mb-6 shine-effect inline-block rounded-full"><img id="logo" src="https://nonthaphathr.github.io/uploadimg/logokhampraphan-non.png" alt="Logo" class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full shadow-lg" onerror="this.src=''; this.alt='โลโก้ไม่สามารถโหลดได้'; this.style.display='none';">
+    
+    <header class="text-center mb-10 animate-fade-in-up" style="animation-delay: 0.1s; opacity: 0;">
+     <div class="mb-6 inline-block rounded-full shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+         <img id="logo" src="https://nonthaphathr.github.io/uploadimg/logokhampraphan-non.png" alt="Logo" class="w-32 h-32 md:w-40 md:h-40 object-cover" onerror="this.src=''; this.style.display='none';">
      </div>
-     <h1 id="main-title" class="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-600 via-orange-500 to-pink-500 bg-clip-text text-transparent">เครื่องมือช่วยแต่งคำประพันธ์ประเภทฉันท์</h1>
-     <p id="subtitle" class="text-base md:text-xl text-gray-700 max-w-3xl mx-auto px-4">พัฒนาโดย ครูนนทพัทธ์ หิรัญเรือง กลุ่มสาระการเรียนรู้ภาษาไทย โรงเรียนกระดุมทองวิทยา</p>
+     
+     <h1 id="main-title" class="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-600 via-orange-500 to-pink-500 bg-clip-text text-transparent drop-shadow-sm">เครื่องมือช่วยแต่งคำประพันธ์ประเภทฉันท์</h1>
+     
+     <div id="subtitle" class="text-base md:text-lg text-gray-700 max-w-4xl mx-auto px-4 leading-relaxed">
+        <span class="font-semibold text-gray-800">พัฒนาโดย ครูนนทพัทธ์ หิรัญเรือง</span><br>
+        <span class="text-gray-600">กลุ่มสาระการเรียนรู้ภาษาไทย โรงเรียนกระดุมทองวิทยา<br class="md:hidden"> สังกัดองค์การบริหารส่วนจังหวัดศรีสะเกษ</span>
+     </div>
+
+     <div class="mt-8 animate-fade-in-up" style="animation-delay: 0.2s; opacity: 0;">
+        <div class="quote-badge inline-block px-6 py-3 rounded-full">
+            <span class="text-lg md:text-xl font-bold quote-text">
+                ✨ เพื่อนคิดครูภาษาไทย พัฒนาศิษย์ก้าวไกล ด้วยเทคโนโลยี ✨
+            </span>
+        </div>
+     </div>
     </header>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12 max-w-4xl mx-auto">
-     <a href="https://nonthaphathr.github.io/manavokkachunt8/" target="_blank" rel="noopener noreferrer" class="tool-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.2s; opacity: 0;">
-      <div class="aspect-square mb-4 overflow-hidden rounded-xl"><img src="https://nonthaphathr.github.io/uploadimg/chunt1.png" alt="มาณวกฉันท์ 8" class="tool-image w-full h-full object-cover" onerror="this.src=''; this.alt='รูปภาพไม่สามารถโหลดได้'; this.style.display='none';">
-      </div><h3 class="text-lg md:text-xl font-semibold text-center text-gray-800">เครื่องมือแต่งมาณวกฉันท์ 8</h3></a> 
-     <a href="https://nonthaphathr.github.io/intharavichian11/" target="_blank" rel="noopener noreferrer" class="tool-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.3s; opacity: 0;">
-      <div class="aspect-square mb-4 overflow-hidden rounded-xl"><img src="https://nonthaphathr.github.io/uploadimg/chunt2.png" alt="อินทรวิเชียรฉันท์ 11" class="tool-image w-full h-full object-cover" onerror="this.src=''; this.alt='รูปภาพไม่สามารถโหลดได้'; this.style.display='none';">
-      </div><h3 class="text-lg md:text-xl font-semibold text-center text-gray-800">เครื่องมือแต่งอินทรวิเชียรฉันท์ 11</h3></a> 
-     <a href="https://nonthaphathr.github.io/phuchongkapayatachunt12/" target="_blank" rel="noopener noreferrer" class="tool-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.4s; opacity: 0;">
-      <div class="aspect-square mb-4 overflow-hidden rounded-xl"><img src="https://nonthaphathr.github.io/uploadimg/chunt3.png" alt="ภุชงคปยาตฉันท์ 12" class="tool-image w-full h-full object-cover" onerror="this.src=''; this.alt='รูปภาพไม่สามารถโหลดได้'; this.style.display='none';">
-      </div><h3 class="text-lg md:text-xl font-semibold text-center text-gray-800">เครื่องมือแต่งภุชงคปยาตฉันท์ 12</h3></a> 
-     <a href="https://nonthaphathr.github.io/wasantadilokchunt14/" target="_blank" rel="noopener noreferrer" class="tool-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.5s; opacity: 0;">
-      <div class="aspect-square mb-4 overflow-hidden rounded-xl"><img src="https://nonthaphathr.github.io/uploadimg/chunt4.png" alt="วสันตดิลกฉันท์ 14" class="tool-image w-full h-full object-cover" onerror="this.src=''; this.alt='รูปภาพไม่สามารถโหลดได้'; this.style.display='none';">
-      </div><h3 class="text-lg md:text-xl font-semibold text-center text-gray-800">เครื่องมือแต่งวสันตดิลกฉันท์ 14</h3></a>
+     <a href="https://nonthaphathr.github.io/manavokkachunt8/" target="_blank" rel="noopener noreferrer" class="tool-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.3s; opacity: 0;">
+      <div class="aspect-square mb-4 overflow-hidden rounded-xl">
+          <img src="https://nonthaphathr.github.io/uploadimg/chunt1.png" alt="มาณวกฉันท์ 8" class="tool-image w-full h-full object-cover" onerror="this.style.display='none';">
+      </div>
+      <h3 class="text-lg md:text-xl font-semibold text-center text-gray-800">เครื่องมือแต่งมาณวกฉันท์ 8</h3>
+     </a> 
+     
+     <a href="https://nonthaphathr.github.io/intharavichian11/" target="_blank" rel="noopener noreferrer" class="tool-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.4s; opacity: 0;">
+      <div class="aspect-square mb-4 overflow-hidden rounded-xl">
+          <img src="https://nonthaphathr.github.io/uploadimg/chunt2.png" alt="อินทรวิเชียรฉันท์ 11" class="tool-image w-full h-full object-cover" onerror="this.style.display='none';">
+      </div>
+      <h3 class="text-lg md:text-xl font-semibold text-center text-gray-800">เครื่องมือแต่งอินทรวิเชียรฉันท์ 11</h3>
+     </a> 
+     
+     <a href="https://nonthaphathr.github.io/phuchongkapayatachunt12/" target="_blank" rel="noopener noreferrer" class="tool-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.5s; opacity: 0;">
+      <div class="aspect-square mb-4 overflow-hidden rounded-xl">
+          <img src="https://nonthaphathr.github.io/uploadimg/chunt3.png" alt="ภุชงคปยาตฉันท์ 12" class="tool-image w-full h-full object-cover" onerror="this.style.display='none';">
+      </div>
+      <h3 class="text-lg md:text-xl font-semibold text-center text-gray-800">เครื่องมือแต่งภุชงคปยาตฉันท์ 12</h3>
+     </a> 
+     
+     <a href="https://nonthaphathr.github.io/wasantadilokchunt14/" target="_blank" rel="noopener noreferrer" class="tool-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.6s; opacity: 0;">
+      <div class="aspect-square mb-4 overflow-hidden rounded-xl">
+          <img src="https://nonthaphathr.github.io/uploadimg/chunt4.png" alt="วสันตดิลกฉันท์ 14" class="tool-image w-full h-full object-cover" onerror="this.style.display='none';">
+      </div>
+      <h3 class="text-lg md:text-xl font-semibold text-center text-gray-800">เครื่องมือแต่งวสันตดิลกฉันท์ 14</h3>
+     </a>
     </div>
-    <footer class="text-center mt-12 animate-fade-in-up" style="animation-delay: 0.6s; opacity: 0;">
-     <div class="visitor-badge inline-block bg-white rounded-full px-6 py-3 shadow-lg mb-4">
+
+    <footer class="text-center mt-12 animate-fade-in-up" style="animation-delay: 0.7s; opacity: 0;">
+     <div class="visitor-badge inline-block bg-white rounded-full px-6 py-3 shadow-lg mb-4 border border-orange-100">
       <div class="flex items-center gap-3">
-       <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewbox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
-       </svg><span class="text-gray-700 font-semibold">ผู้เข้าชม: <span id="visitor-count" class="text-orange-600">กำลังโหลด...</span></span>
+       <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewbox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" /></svg>
+       <span class="text-gray-700 font-semibold">ผู้เข้าชม: <span id="visitor-count" class="text-orange-600">กำลังโหลด...</span></span>
       </div>
      </div>
      <p id="footer-text" class="text-gray-600 text-sm">© 2024 สงวนลิขสิทธิ์ ครูนนทพัทธ์ หิรัญเรือง</p>
     </footer>
    </div>
   </div>
+
   <script>
         const defaultConfig = {
             main_title: "เครื่องมือช่วยแต่งคำประพันธ์ประเภทฉันท์",
-            subtitle: "พัฒนาโดย ครูนนทพัทธ์ หิรัญเรือง กลุ่มสาระการเรียนรู้ภาษาไทย โรงเรียนกระดุมทองวิทยา",
+            // Updated subtitle with HTML for line breaks
+            subtitle: "<span class='font-semibold text-gray-800'>พัฒนาโดย ครูนนทพัทธ์ หิรัญเรือง</span><br><span class='text-gray-600'>กลุ่มสาระการเรียนรู้ภาษาไทย โรงเรียนกระดุมทองวิทยา สังกัดองค์การบริหารส่วนจังหวัดศรีสะเกษ</span>",
             footer_text: "© 2024 สงวนลิขสิทธิ์ ครูนนทพัทธ์ หิรัญเรือง"
         };
 
@@ -197,7 +197,8 @@
             const footerText = config.footer_text || defaultConfig.footer_text;
 
             document.getElementById('main-title').textContent = mainTitle;
-            document.getElementById('subtitle').textContent = subtitle;
+            // Changed to innerHTML to support <br> tags
+            document.getElementById('subtitle').innerHTML = subtitle;
             document.getElementById('footer-text').textContent = footerText;
             document.title = mainTitle;
         }
@@ -219,17 +220,12 @@
             ]);
         }
 
-        // Visitor counter using api.counterapi.dev (Replacement for dead countapi.xyz)
+        // Visitor counter (Using correct updated API)
         async function updateVisitorCount() {
             try {
-                // ใช้บริการ api.counterapi.dev แทน (Namespace: poetry-tools-nonthaphat)
-                // เติม /up ด้านหลังเพื่อนับจำนวนเพิ่ม
                 const response = await fetch('https://api.counterapi.dev/v1/poetry-tools-nonthaphat/visits/up');
-                
                 if (!response.ok) throw new Error('Network response was not ok');
-
                 const data = await response.json();
-                // API ตัวใหม่คืนค่ามาในชื่อ properties 'count' (ของเดิมคือ 'value')
                 document.getElementById('visitor-count').textContent = data.count.toLocaleString('th-TH');
             } catch (error) {
                 console.error('Error fetching visitor count:', error);
@@ -239,7 +235,6 @@
 
         // Initialize
         window.addEventListener('DOMContentLoaded', async () => {
-            // Initialize SDK
             if (window.elementSdk) {
                 window.elementSdk.init({
                     defaultConfig,
@@ -249,10 +244,8 @@
                 });
             }
 
-            // Load visitor count
             await updateVisitorCount();
 
-            // Hide loading screen and show content
             setTimeout(() => {
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('main-content').style.opacity = '1';
